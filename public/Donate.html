@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudan Emergency Fund</title>
+<style>
+  /* Reset some default styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  body {
+    background-color: #f2f2f2;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  /* Header section */
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .header small {
+    color: #999;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .header h1 {
+    font-size: 36px;
+    margin: 10px 0;
+    font-weight: 600;
+  }
+
+  .header span {
+    color: #555;
+    font-size: 16px;
+  }
+
+  /* Main content layout */
+  .main {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  /* Left column */
+  .left-column {
+    flex: 2;
+    min-width: 300px;
+  }
+
+  .left-column img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 4px;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .tabs button {
+    background: none;
+    border: none;
+    font-weight: 600;
+    padding-bottom: 5px;
+    cursor: pointer;
+    color: #555;
+    border-bottom: 2px solid transparent;
+    transition: 0.2s;
+  }
+
+  .tabs button.active {
+    border-color: #333;
+    color: #333;
+  }
+
+  .summary {
+    background: #fff;
+    padding: 20px;
+    border-radius: 4px;
+  }
+
+  .summary h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+  }
+
+  .summary p {
+    font-size: 16px;
+    color: #555;
+  }
+
+  /* Right column */
+  .right-column {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .fund {
+    background: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .fund h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .fund p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+
+  .progress-bar {
+    background: #eee;
+    height: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .progress {
+    height: 12px;
+    background-color: #c1d82f; /* limeish green */
+    width: 13%; /* matches $683,328 of $5,000,000 */
+  }
+
+  .donate-now {
+    display: inline-block;
+    background-color: #f28c00;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 4px;
+    margin: 10px 0 20px 0;
+    cursor: pointer;
+  }
+
+  .donation-options {
+    background: #fff;
+    padding: 10px 0;
+    border-radius: 4px;
+  }
+
+  .donation-option {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-top: 1px solid #eee;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .donation-option:first-child {
+    border-top: none;
+  }
+
+  .donation-option:hover {
+    background: #f9f9f9;
+  }
+
+  .donation-option span {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .donation-option small {
+    color: #777;
+  }
+
+  /* Responsive */
+  @media(max-width: 768px) {
+    .main {
+      flex-direction: column;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <small>Disaster Response | Sudan | Project #59359</small>
+    <h1>Sudan Emergency Fund</h1>
+    <span>by GlobalGiving</span>
+  </div>
+
+  <div class="main">
+
+    <!-- Left Column -->
+    <div class="left-column">
+      <img src="https://i.ibb.co/Qcvzyd1/sudan-man.jpg" alt="Sudan Emergency Fund">
+      
+      <div class="tabs">
+        <button class="active">STORY</button>
+        <button>PROJECTS</button>
+        <button>REPORTS</button>
+        <button>FAQ</button>
+      </div>
+
+      <div class="summary">
+        <h2>Summary</h2>
+        <p>
+          Sudan is experiencing a catastrophic civil war, which has resulted in a declared famine and cholera epidemic as violent clashes between paramilitary and government forces threaten the lives of millions of people across the country. Since April 2023, thousands of Sudanese have been killed, and millions more injured and displaced in the fighting. Your donation to the fund will provide emergency food, supplies, and long-term aid to those affected.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="right-column">
+      <div class="fund">
+        <h3>$683,328</h3>
+        <p>raised of $5,000,000 goal</p>
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
+        <p>2,519 donations</p>
+        <p>$4,316,672 to go</p>
+        <div class="donate-now">DONATE NOW</div>
+      </div>
+
+      <div class="donation-options">
+        <div class="donation-option">
+          <span>$30 USD</span>
+          <small>emergency food, supplies, and long-term aid</small>
+        </div>
+        <div class="donation-option">
+          <span>$50 USD</span>
+          <small>emergency food, supplies, and long-term aid</small>
+        </div>
+        <div class="donation-option">
+          <span>$75 USD</span>
+          <small>emergency food, supplies, and long-term aid</small>
+        </div>
+        <div class="donation-option">
+          <span>$100 USD</span>
+          <small>emergency food, supplies, and long-term aid</small>
+        </div>
+        <div class="donation-option">
+          <span>$200 USD</span>
+          <small>emergency food, supplies, and long-term aid</small>
+        </div>
+        <div class="donation-option">
+          <span>$500 USD</span>
+          <small>emergency food, supplies, and long-term aid</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

@@ -7,6 +7,9 @@
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <style>
     * {
@@ -164,15 +167,11 @@
         grid-template-columns: 1fr 1fr; /* 2 columns */
         grid-auto-rows: 260px;
       }
-
-   
     }
 
     @media (max-width: 90px) {
-    
       .grid-container {
         margin-top: 100px!important;
-    
       }
 
       .grid-item.large {
@@ -194,6 +193,94 @@
         gap: 12px;
       }
     }
+
+    /* ================= FOOTER STYLES EXACTLY AS YOU WANTED ================= */
+   .footer {
+    margin-top: 290px !important;
+    background: white;
+    padding: 40px 0 !important;  /* only top and bottom padding */
+    width: 100% !important;      /* full width */
+    margin: 0 !important;        /* remove any default margin */
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px !important; /* optional: limits content width */
+    margin: 0 auto !important;     /* centers content horizontally */
+}
+
+    .footer-left, .footer-center, .footer-right {
+        flex: 1;
+        min-width: 200px;
+    }
+    .footer-column {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .crisis-watch {
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    .footer a {
+        text-decoration: none;
+        color: #1f2937;
+        font-size: 0.9rem;
+    }
+    .footer-center h4, .footer-right h4 {
+        margin-bottom: 10px;
+    }
+    .donut-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .donut {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: conic-gradient(
+            yellow 0 87%,
+            black 87% 94%,
+            grey 94% 100%
+        );
+    }
+    .legend div {
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+    }
+    .legend span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 4px;
+    }
+    .yellow { background: yellow; }
+    .black { background: black; }
+    .grey { background: grey; }
+    .donate-btn {
+        margin-top: 10px;
+        padding: 8px 14px;
+        background: #9bb5c6;
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 6px;
+    }
+    .social-icons i {
+        margin-right: 8px;
+        cursor: pointer;
+    }
+    .subscribe {
+        font-weight: 600;
+        cursor: pointer;
+        color: #1f2937;
+    }
   </style>
 </head>
 
@@ -204,51 +291,34 @@
 
   <!-- ================= PROJECTS GRID ================= -->
   <section class="projects-grid">
-    <div class="grid-container">
+  <div class="grid-container">
 
-      <div class="grid-item large">
-       <img src="Assets/kidsscraed.webp" alt="">
-        <div class="overlay">
-          <small>UNITED STATES</small>
-          <h3>Emergency Relief & Aid Coordination for Gaza</h3>
-        </div>
+    <a href="fund.html?id=1" class="grid-item large">
+      <img src="Assets/kidsscraed.webp" alt="">
+      <div class="overlay">
+        <small>GAZA</small>
+        <h3>Emergency Relief & Aid Coordination</h3>
       </div>
+    </a>
 
-      <div class="grid-item">
-        <img src="Assets/saveus.jpeg" alt="">
-        <div class="overlay">
-          <small>GAZA STRIP</small>
-          <h3>Food, Water, and Medical Aid Distribution</h3>
-        </div>
+    <a href="fund.html?id=2" class="grid-item">
+      <img src="Assets/saveus.jpeg" alt="">
+      <div class="overlay">
+        <small>GAZA STRIP</small>
+        <h3>Food, Water & Medical Aid</h3>
       </div>
+    </a>
 
-      <div class="grid-item">
-        <img src="Assets/scared.webp" alt="">
-        <div class="overlay">
-          <small>GAZA</small>
-          <h3>Support Displaced Families in Crisis Zones</h3>
-        </div>
+    <a href="fund.html?id=3" class="grid-item">
+      <img src="Assets/scared.webp" alt="">
+      <div class="overlay">
+        <small>PALESTINE</small>
+        <h3>Support Displaced Families</h3>
       </div>
+    </a>
 
-      <div class="grid-item">
-         <img src="Assets/happy.png" alt="">
-     
-        <div class="overlay">
-          <small>PALESTINE</small>
-          <h3>Protect Children Through Emergency Assistance</h3>
-        </div>
-      </div>
-
-      <div class="grid-item">
-        <img src="Assets/crying.webp" alt="">
-        <div class="overlay">
-          <small>MIDDLE EAST</small>
-          <h3>Restore Dignity Through Transparent Aid Delivery</h3>
-        </div>
-      </div>
-
-    </div>
-  </section>
+  </div>
+</section>
 
   <!-- ================= EXPLORE PROJECTS ================= -->
   <div class="explore-bar">
@@ -308,7 +378,62 @@ into measurable impact for communities affected by crisis.
   </div>
 </section>
 
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer-container">
+    <!-- LEFT -->
+    <div class="footer-left">
+      <div class="footer-column">
+        <div class="crisis-watch">
+          <i class="fa-solid fa-triangle-exclamation"></i> Crisis Watch
+        </div>
+        <a href="#">Who We Are</a>
+        <a href="#">Where We Work</a>
+        <a href="#">What We Do</a>
+        <a href="#">How To Help</a>
+        <a href="#">Latest</a>
+      </div>
+   
+    </div>
+    <!-- CENTER -->
+    <div class="footer-center">
+      <h4>Our efficiency</h4>
+      <div class="donut-wrapper">
+        <div class="donut"></div>
+        <div class="legend">
+          <div><span class="yellow"></span> <strong>87%</strong> Program services</div>
+          <div><span class="black"></span> <strong>7%</strong> Management and general</div>
+          <div><span class="grey"></span> <strong>6%</strong> Fundraising</div>
+        </div>
+      </div>
+     <a href="./Donate.html" class="donate-link">
+  <button class="donate-btn">
+    Donate <i class="fa-regular fa-heart"></i>
+  </button>
+</a>
+
+    </div>
+    <!-- RIGHT -->
+    <div class="footer-right">
+      <h4>Join our mailing list</h4>
+      <p>
+        Get the latest news about our programs.
+        <span class="subscribe">Subscribe</span>
+      </p>
+      <div class="social-icons">
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-youtube"></i>
+        <i class="fa-brands fa-tiktok"></i>
+        <i class="fa-brands fa-linkedin-in"></i>
+        <i class="fa-brands fa-x-twitter"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
 <script>
+  // Learn More toggle
   const learnMoreBtn = document.getElementById('learnMoreBtn');
   const learnMoreSection = document.getElementById('why-edams');
 

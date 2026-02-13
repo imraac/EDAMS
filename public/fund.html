@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency Fund</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f5f5f5;
+}
+
+.container{
+    width:1200px;
+    margin:auto;
+    display:flex;
+    gap:30px;
+}
+
+/* LEFT SIDE */
+.left{
+    width:70%;
+    background:white;
+}
+
+.hero img{
+    width:100%;
+    height:400px;
+    object-fit:cover;
+}
+
+.tabs{
+    display:flex;
+    background:#88af1b;
+    color:white;
+}
+
+.tabs button{
+    flex:1;
+    padding:15px;
+    background:none;
+    border:none;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.tabs button.active{
+    background:#1f2933;
+}
+
+.section{
+    padding:30px;
+}
+
+.section h2{
+    margin-top:0;
+}
+
+.stats{
+    display:flex;
+    gap:40px;
+    margin:30px 0;
+    font-weight:bold;
+    color:#7a9c00;
+}
+
+.stats div{
+    text-align:center;
+}
+
+.challenge{
+    margin-top:40px;
+}
+
+/* RIGHT SIDE DONATION */
+.right{
+    width:30%;
+    background:#eeeeee;
+    padding:20px;
+}
+.fund-progress-box{
+    background:#f3f3f3;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:4px;
+}
+
+.fund-progress-box .raised{
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+.fund-progress-box .raised .amount{
+    color:#84a800;
+    font-size:28px;
+    font-weight:bold;
+    margin-right:5px;
+}
+
+.progress-bar{
+    width:100%;
+    height:8px;
+    background:#ddd;
+    border-radius:5px;
+    overflow:hidden;
+    margin:10px 0 15px 0;
+}
+
+.progress-fill{
+    width:13.6%; /* 683,328 ÷ 5,000,000 */
+    height:100%;
+    background:#84a800;
+}
+
+.fund-stats{
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+    color:#444;
+}
+
+.back-button {
+      display: inline-block;
+      margin: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.2s;
+    }
+
+    .back-button:hover {
+      color: #e68d19; /* change color on hover */
+    }
+.donate-now{
+    background:#f7941e;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.donation-option{
+    background:#f5e3cf;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    margin-bottom:10px;
+    cursor:pointer;
+}
+
+.donation-option:hover{
+    background:#f0d6b8;
+}
+
+.amount{
+    font-weight:bold;
+    font-size:18px;
+}
+
+.other-amount{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+}
+
+.other-amount input{
+    width:100%;
+    padding:8px;
+}
+/* Apply box-sizing globally */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Prevent horizontal overflow */
+html, body {
+    overflow-x: hidden;
+}
+
+/* Scrollable tabs without moving the page */
+.tabs {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    scrollbar-width: none; /* hide Firefox scrollbar */
+}
+
+.tabs::-webkit-scrollbar {
+    display: none; /* hide Chrome/Safari scrollbar */
+}
+
+.tabs button {
+    flex: none; /* prevent buttons from stretching full width */
+    margin-right: 5px; /* space between buttons */
+}
+
+/* Container for small screens */
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 0 10px; /* small padding */
+    }
+
+    .left, .right {
+        width: 100%;
+    }
+
+    .hero img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .stats div, .fund-stats div {
+        flex: 1 1 100%;
+    }
+
+    .section {
+        padding: 10px 0;
+    }
+
+    .donation-option {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+</style>
+</head>
+<div class="donate-now"></div>
+
+
+<body>
+<div class="fund-progress-box">
+    <div class="raised">
+        <span class="amount">$683,328</span>
+        <span class="text">raised of $5,000,000 goal</span>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-fill"></div>
+    </div>
+
+    <div class="fund-stats">
+        <div><strong>2,519</strong> donations</div>
+        <div><strong>$4,316,672</strong> to go</div>
+    </div>
+</div>
+ <a href="index.html" class="back-button">
+    &#8592; Back
+  </a>
+<div class="container">
+
+    <!-- LEFT CONTENT -->
+    <div class="left">
+        <div class="hero">
+<img id="heroImage" src="" alt="Fund Image">
+        </div>
+
+        <div class="tabs">
+            <button class="active">STORY</button>
+            <button>PROJECTS</button>
+            <button>REPORTS</button>
+            <button>FAQ</button>
+        </div>
+
+        <div class="section">
+            <h2>Summary</h2>
+            <p>
+                Sudan is experiencing a catastrophic civil war, which has resulted in a declared famine 
+                and cholera epidemic as violent clashes between paramilitary and government forces threaten 
+                the lives of millions of people across the country. Since April 2023, thousands of Sudanese 
+                have been killed, and millions more injured and displaced in the fighting.
+                Your donation to the Sudan Emergency Fund will provide emergency relief, food, water, 
+                medicine, and other essential supplies to impacted communities.
+            </p>
+
+            <div class="stats">
+                <div>
+                    <div>$5M</div>
+                    <small>Total Goal</small>
+                </div>
+                <div>
+                    <div>$4.32M</div>
+                    <small>Remaining</small>
+                </div>
+                <div>
+                    <div>1,366</div>
+                    <small>Donors</small>
+                </div>
+                <div>
+                    <div>33</div>
+                    <small>Monthly Donors</small>
+                </div>
+                <div>
+                    <div>206</div>
+                    <small>Fundraisers</small>
+                </div>
+                <div>
+                    <div>2</div>
+                    <small>Years</small>
+                </div>
+            </div>
+
+            <div class="challenge">
+                <h2>Challenge</h2>
+                <p>
+                    Sudan was already amid its worst humanitarian crisis since 2011 and the current war, famine,
+                    and cholera epidemic is further upending millions of lives. Fighting between armed groups 
+                    and forces is blocking safe access to basic needs and humanitarian assistance.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- RIGHT DONATION PANEL -->
+    <div class="right">
+
+        <div class="donate-now">DONATE NOW</div>
+
+        <div class="donation-option">
+            <span class="amount">$30</span>
+            <span>Emergency food & supplies</span>
+        </div>
+
+        <div class="donation-option">
+            <span class="amount">$50</span>
+            <span>Emergency food & supplies</span>
+        </div>
+
+        <div class="donation-option">
+            <span class="amount">$75</span>
+            <span>Emergency food & supplies</span>
+        </div>
+
+        <div class="donation-option">
+            <span class="amount">$100</span>
+            <span>Emergency food & supplies</span>
+        </div>
+
+        <div class="donation-option">
+            <span class="amount">$200</span>
+            <span>Emergency food & supplies</span>
+        </div>
+
+        <div class="donation-option">
+            <span class="amount">$500</span>
+            <span>Emergency food & supplies</span>
+        </div>
+
+        <div class="donation-option">
+            <span class="amount">$1000</span>
+            <span>Emergency food & supplies</span>
+        </div>
+
+        <div class="other-amount">
+            <input type="number" placeholder="Other amount">
+        </div>
+
+    </div>
+
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // Data for each fund
+    const fundsData = {
+        1: {
+            image: "Assets/kidsscraed.webp",
+            summary: `Sudan is experiencing a catastrophic civil war, which has resulted in a declared famine 
+            and cholera epidemic. Thousands have been killed, and millions injured. Your donation will help save lives.`,
+            challenge: `Sudan is amid its worst humanitarian crisis since 2011. Fighting blocks safe access to food, water, and medical aid.`,
+            stats: { totalGoal: 5000000, raised: 683328, donors: "1,366", monthlyDonors: "33", fundraisers: "206", years: "2" },
+            donations: [
+                { amount: 30, desc: "Emergency food & supplies" },
+                { amount: 50, desc: "Emergency food & supplies" },
+                { amount: 75, desc: "Emergency food & supplies" },
+                { amount: 100, desc: "Emergency food & supplies" },
+                { amount: 200, desc: "Emergency food & supplies" },
+                { amount: 500, desc: "Emergency food & supplies" },
+                { amount: 1000, desc: "Emergency food & supplies" }
+            ],
+            projects: `<ul><li>Food distribution in 5 major cities</li><li>Medical supplies to 20 hospitals</li><li>Temporary shelters for displaced families</li></ul>`,
+            reports: `<ul><li>Quarterly impact report Q1 2023</li><li>Financial transparency report</li><li>Beneficiary feedback summary</li></ul>`,
+            faq: `<ul><li>How is my donation used?</li><li>Can I donate monthly?</li><li>Is my donation tax-deductible?</li></ul>`
+        },
+        2: {
+            image: "Assets/saveus.jpeg",
+            summary: `Thousands of children are in danger due to lack of access to schools and clean water.`,
+            challenge: `Aid is needed urgently to provide medical help and safe shelters for displaced families.`,
+            stats: { totalGoal: 3000000, raised: 900000, donors: "900", monthlyDonors: "20", fundraisers: "150", years: "1" },
+            donations: [
+                { amount: 20, desc: "Water & sanitation kits" },
+                { amount: 40, desc: "Food packs" },
+                { amount: 60, desc: "Medical supplies" },
+                { amount: 100, desc: "Shelter support" }
+            ],
+            projects: `<ul><li>Clean water supply in 10 villages</li><li>School rebuilding initiative</li><li>Medical outreach for children</li></ul>`,
+            reports: `<ul><li>Annual education report 2023</li><li>Water access audit</li></ul>`,
+            faq: `<ul><li>How is water delivered?</li><li>How are schools selected?</li></ul>`
+        },
+        3: {
+            image: "Assets/scared.webp",
+            summary: `Communities are traumatized by recent natural disasters. Children and elderly need emergency relief.`,
+            challenge: `Immediate support is required to rebuild homes, provide medical care, and restore food supply.`,
+            stats: { totalGoal: 2000000, raised: 500000, donors: "500", monthlyDonors: "10", fundraisers: "50", years: "1" },
+            donations: [
+                { amount: 25, desc: "Food packs" },
+                { amount: 50, desc: "Medical kits" },
+                { amount: 75, desc: "Temporary shelter" },
+                { amount: 100, desc: "Community rebuilding" }
+            ],
+            projects: `<ul><li>Temporary shelters</li><li>Medical relief camps</li></ul>`,
+            reports: `<ul><li>Disaster relief report</li></ul>`,
+            faq: `<ul><li>Can I volunteer?</li></ul>`
+        }
+    };
+
+    // DOM elements
+    let fundId = new URLSearchParams(window.location.search).get("id") || 1;
+    fundId = parseInt(fundId);
+    const heroImage = document.getElementById("heroImage");
+    const summaryEl = document.querySelector(".section p");
+    const challengeEl = document.querySelector(".challenge p");
+    const challengeContainer = document.querySelector(".challenge");
+    const statsEls = document.querySelectorAll(".stats div");
+    const donationPanel = document.querySelector(".right");
+    const tabs = document.querySelectorAll(".tabs button");
+    const sectionH2 = document.querySelector(".section h2");
+    const progressFill = document.querySelector(".progress-fill");
+    const raisedAmountText = document.querySelector(".fund-progress-box .amount");
+    const goalText = document.querySelector(".fund-progress-box .text");
+
+    // Render fund content
+    function renderFund(id) {
+        const fund = fundsData[id];
+
+        heroImage.src = fund.image;
+
+        // Default tab: STORY
+        renderTab("STORY");
+
+        // Stats
+        const statValues = [
+            `$${fund.stats.totalGoal.toLocaleString()}`,
+            `$${(fund.stats.totalGoal - fund.stats.raised).toLocaleString()}`,
+            fund.stats.donors,
+            fund.stats.monthlyDonors,
+            fund.stats.fundraisers,
+            fund.stats.years
+        ];
+        statsEls.forEach((el, i) => el.firstElementChild.textContent = statValues[i]);
+
+        // Progress bar
+        const percent = (fund.stats.raised / fund.stats.totalGoal) * 100;
+        progressFill.style.width = percent + "%";
+
+        // Raised amount
+        raisedAmountText.textContent = `$${fund.stats.raised.toLocaleString()}`;
+        goalText.textContent = `raised of $${fund.stats.totalGoal.toLocaleString()} goal`;
+
+        // Donations
+        const donateNow = `<div class="donate-now">DONATE NOW</div>`;
+        const donationHtml = fund.donations.map(d => `
+            <div class="donation-option">
+                <span class="amount">$${d.amount}</span>
+                <span>${d.desc}</span>
+            </div>
+        `).join("") + `<div class="other-amount"><input type="number" placeholder="Other amount"></div>`;
+
+        donationPanel.innerHTML = donateNow + donationHtml;
+    }
+
+    // Render content based on active tab
+    function renderTab(tabName) {
+        const fund = fundsData[fundId];
+
+        tabs.forEach(btn => btn.classList.remove("active"));
+        const activeBtn = Array.from(tabs).find(b => b.textContent === tabName);
+        if (activeBtn) activeBtn.classList.add("active");
+
+        switch(tabName) {
+            case "STORY":
+                sectionH2.textContent = "Summary";
+                summaryEl.innerHTML = fund.summary;
+                challengeContainer.style.display = "block";
+                challengeEl.innerHTML = fund.challenge;
+                break;
+            case "PROJECTS":
+                sectionH2.textContent = "Projects";
+                summaryEl.innerHTML = fund.projects;
+                challengeContainer.style.display = "none";
+                break;
+            case "REPORTS":
+                sectionH2.textContent = "Reports";
+                summaryEl.innerHTML = fund.reports;
+                challengeContainer.style.display = "none";
+                break;
+            case "FAQ":
+                sectionH2.textContent = "FAQ";
+                summaryEl.innerHTML = fund.faq;
+                challengeContainer.style.display = "none";
+                break;
+        }
+    }
+
+    // Tab click events
+    tabs.forEach(btn => {
+        btn.addEventListener("click", () => renderTab(btn.textContent));
+    });
+
+    renderFund(fundId);
+
+    // Optional: buttons/images to change fund
+    document.querySelectorAll(".fund-selector").forEach(btn => {
+        btn.addEventListener("click", () => {
+            fundId = parseInt(btn.dataset.id);
+            renderFund(fundId);
+        });
+    });
+});
+</script>
+
+
+
+</body>
+</html>
