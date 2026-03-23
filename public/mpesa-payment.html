@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M-Pesa Payment</title>
+<link rel="stylesheet" href="mpesa.css">
+</head>
+
+<body>
+
+<div class="hero">
+
+<div class="card">
+
+  <div class="section">
+    <label>You Send</label>
+    <div class="row">
+      <input type="number" id="usd" value="100">
+      <div class="currency">
+        <img src="https://flagcdn.com/us.svg">
+        <span>USD</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <label>They Get</label>
+    <div class="row">
+      <input type="number" id="kes" value="12919">
+      <div class="currency">
+        <img src="https://flagcdn.com/ke.svg">
+        <span>KES</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rate">
+    Special exchange rate for new users!
+  </div>
+
+  <div class="exchange">
+    <p>1 USD .......... <span class="old">127.740 KES</span> <b>129.190 KES</b></p>
+  </div>
+
+  <div class="fee">
+    Fee ........................................ <span>0 USD</span>
+  </div>
+
+  <div class="promo">
+     $0 fee to Kenya!
+  </div>
+
+  <button class="pay-btn" onclick="payMpesa()">
+    Pay with M-Pesa
+  </button>
+
+</div>
+
+</div>
+
+<script>
+
+const rate = 129.19;
+
+const usd = document.getElementById("usd");
+const kes = document.getElementById("kes");
+
+usd.addEventListener("input", () => {
+  kes.value = (usd.value * rate).toFixed(2);
+});
+
+function payMpesa(){
+  alert("Redirecting to M-Pesa payment...");
+}
+
+</script>
+
+</body>
+</html>

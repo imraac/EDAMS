@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Summary Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+  }
+
+  body {
+    display: flex;
+    min-height: 100vh;
+    background: #f0f2f5;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background: #2b81e4;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    min-height: 100vh; /* full height */
+  }
+
+  .sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s;
+  }
+
+  .sidebar a:hover {
+    background: #FF3E3E;
+  }
+
+  .sidebar a .icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+
+  /* Main content */
+  .main {
+    flex: 1;
+    padding: 40px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main h1 {
+    font-size: 2rem;
+    margin-bottom: 20px; /* less space above */
+    text-align: center;
+    color: #333;
+  }
+
+  /* Metrics container */
+  .metrics-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 20px 32px;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .metric-card {
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .metric-title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .metric-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .total-payable { background: #FFE8E7; color: #FF6247; }
+  .total-paid { background: #E8FFE8; color: #4CAF50; }
+  .other-fees { background: #FFF7E8; color: #FFB74D; }
+
+  .error { color: red; margin-top: 12px; text-align: center; }
+/* Donation image below metrics */
+.background-image {
+  width: 250px;            /* width of the image */
+  height: 250px;           /* fix the height so it doesn't shrink too much */
+  margin-top: 20px;        /* space between metrics and image */
+  background: url('/Assets/donate.png') no-repeat center; /* image path */
+  background-size: contain; /* keep aspect ratio, fit inside box */
+}
+
+  /* Responsive adjustments */
+  @media(max-width: 768px) {
+    body {
+      flex-direction: column;
+    }
+    .sidebar {
+      width: 100%;
+      flex-direction: row;
+      overflow-x: auto;
+      min-height: auto;
+    }
+    .sidebar a {
+      flex: 1 0 auto;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .main {
+      padding: 20px 10px;
+    }
+    .metrics-grid {
+      grid-template-columns: 1fr;
+    }
+    .background-image {
+      width: 150px;
+      margin-top: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <a href="#"><span class="icon">&#128200;</span> Dashboard</a>
+  <a href="#"><span class="icon">&#8962;</span> Home</a>
+  <a href="#"><span class="icon">&#128218;</span> Donate</a>
+  <a href="#"><span class="icon">&#128181;</span> Crisis Areas</a>
+  <a href="#"><span class="icon">&#128202;</span> Aid Reports</a>
+  <a href="#"><span class="icon">&#127979;</span> Disaster Response</a>
+</div>
+
+<!-- Main Content -->
+<div class="main">
+  <h1> WELCOME TO EDAMS DONATION DASHBOARD</h1>
+
+  <div class="metrics-container">
+    <div class="metrics-grid">
+      <div class="metric-card total-payable">
+        <div class="metric-title">Total Donations</div>
+        <div class="metric-value" id="totalPayable">ksh 0</div>
+      </div>
+      <div class="metric-card total-paid">
+        <div class="metric-title">Total Donated</div>
+        <div class="metric-value" id="totalPaid">ksh 0</div>
+      </div>
+      <div class="metric-card other-fees">
+        <div class="metric-title">Service Fees</div>
+        <div class="metric-value" id="otherFees">ksh 0</div>
+      </div>
+    </div>
+    <div id="error" class="error"></div>
+  </div>
+
+  <!-- Donation image below metrics -->
+  <div class="background-image"></div>
+</div>
+
+<script>
+  const totalPayableEl = document.getElementById('totalPayable');
+  const totalPaidEl = document.getElementById('totalPaid');
+  const otherFeesEl = document.getElementById('otherFees');
+  const errorEl = document.getElementById('error');
+
+  axios.get('http://127.0.0.1:5000/payment-summary')
+    .then(response => {
+      const data = response.data;
+      totalPayableEl.textContent = `ksh ${data.total_payable}`;
+      totalPaidEl.textContent = `ksh ${data.total_paid}`;
+      otherFeesEl.textContent = `ksh ${data.other_fees}`;
+    })
+    .catch(err => {
+      console.error('Error fetching payment summary:', err);
+      errorEl.textContent = 'Failed to fetch payment summary';
+    });
+</script>
+
+</body>
+</html>
